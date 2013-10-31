@@ -32,6 +32,9 @@
 + (void) setLocationNavBar;
 + (void) setBarColor:(UIColor *)color;
 + (void) setLocationOffset:(CGFloat)offset;
++ (void) setTextFont:(UIFont *)font;
++ (void) setTextColor:(UIColor *)color;
++ (void) setTextShadowColor:(UIColor *)color;
 
 ///////////////////////////////////////////////////////////////////////
 

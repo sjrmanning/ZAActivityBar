@@ -53,6 +53,9 @@
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *spinnerView;
 @property (nonatomic, strong, readonly) UIImageView *imageView;
 @property (nonatomic, strong) UIColor *barColor;
+@property (nonatomic, strong) UIFont *textFont;
+@property (nonatomic, strong) UIColor *textColor;
+@property (nonatomic, strong) UIColor *shadowColor;
 
 - (void) showWithStatus:(NSString *)status forAction:(NSString *)action;
 - (void) setStatus:(NSString*)string;
@@ -97,6 +100,21 @@
 + (void) setBarColor:(UIColor *)color
 {
     [ZAActivityBar sharedView].barColor = color;
+}
+
++ (void) setTextFont:(UIFont *)font
+{
+    [ZAActivityBar sharedView].textFont = font;
+}
+
++ (void) setTextColor:(UIColor *)color
+{
+    [ZAActivityBar sharedView].textColor = color;
+}
+
++ (void) setTextShadowColor:(UIColor *)color
+{
+    [ZAActivityBar sharedView].shadowColor = color;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -616,6 +634,9 @@
 	
     if ((self = [super initWithFrame:frame])) {
         self.barColor = [[UIColor blackColor] colorWithAlphaComponent:0.8f];
+        self.textFont = [UIFont boldSystemFontOfSize:14];
+        self.textColor = [UIColor whiteColor];
+        self.shadowColor = [UIColor blackColor];
 		self.userInteractionEnabled = NO;
         self.backgroundColor = [UIColor clearColor];
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -746,7 +767,6 @@
 		stringLabel.textAlignment = UITextAlignmentLeft;
 		stringLabel.baselineAdjustment = UIBaselineAdjustmentAlignCenters;
         stringLabel.autoresizingMask = (UIViewAutoresizingFlexibleWidth);
-		stringLabel.font = [UIFont boldSystemFontOfSize:14];
 		stringLabel.shadowColor = [UIColor blackColor];
 		stringLabel.shadowOffset = CGSizeMake(0, -1);
         stringLabel.numberOfLines = 0;
@@ -754,6 +774,11 @@
     
     if(!stringLabel.superview)
         [self.barView addSubview:stringLabel];
+
+    // Properties which may change.
+    stringLabel.font = self.textFont;
+    stringLabel.textColor = self.textColor;
+    stringLabel.shadowColor = self.shadowColor;
     
     return stringLabel;
 }
