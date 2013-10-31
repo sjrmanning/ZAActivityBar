@@ -13,7 +13,6 @@
 #import <UIKit/UIKit.h>
 
 // Visual Properties
-#define BAR_COLOR [[UIColor blackColor] colorWithAlphaComponent:0.8f]
 #define HEIGHT 40.0f
 #define PADDING 10.0f
 
@@ -31,6 +30,8 @@
 + (void) setLocationBottom;
 + (void) setLocationTabBar;
 + (void) setLocationNavBar;
++ (void) setBarColor:(UIColor *)color;
++ (void) setLocationOffset:(CGFloat)offset;
 
 ///////////////////////////////////////////////////////////////////////
 

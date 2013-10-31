@@ -52,6 +52,7 @@
 @property (nonatomic, strong, readonly) UILabel *stringLabel;
 @property (nonatomic, strong, readonly) UIActivityIndicatorView *spinnerView;
 @property (nonatomic, strong, readonly) UIImageView *imageView;
+@property (nonatomic, strong) UIColor *barColor;
 
 - (void) showWithStatus:(NSString *)status forAction:(NSString *)action;
 - (void) setStatus:(NSString*)string;
@@ -70,7 +71,7 @@
 
 ///////////////////////////////////////////////////////////////
 
-#pragma mark - Offset Properties
+#pragma mark - Properties
 
 + (void) setLocationBottom
 {
@@ -86,6 +87,16 @@
 {
     CGRect screenRect = [[UIScreen mainScreen] bounds];
     [ZAActivityBar sharedView].offset = screenRect.size.height - 120.0f;
+}
+
++ (void) setLocationOffset:(CGFloat)offset
+{
+    [ZAActivityBar sharedView].offset = offset;
+}
+
++ (void) setBarColor:(UIColor *)color
+{
+    [ZAActivityBar sharedView].barColor = color;
 }
 
 ///////////////////////////////////////////////////////////////
@@ -604,6 +615,7 @@
 - (id)initWithFrame:(CGRect)frame {
 	
     if ((self = [super initWithFrame:frame])) {
+        self.barColor = [[UIColor blackColor] colorWithAlphaComponent:0.8f];
 		self.userInteractionEnabled = NO;
         self.backgroundColor = [UIColor clearColor];
         self.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -764,7 +776,7 @@
         rect.origin.y = [self getOffscreenYPosition];
         barView = [[UIView alloc] initWithFrame:rect];
         barView.layer.cornerRadius = 6;
-		barView.backgroundColor = BAR_COLOR;
+		barView.backgroundColor = self.barColor;
         barView.autoresizingMask = (UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth);
         [self addSubview:barView];
     }
