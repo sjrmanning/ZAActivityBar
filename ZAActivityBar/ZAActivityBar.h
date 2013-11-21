@@ -44,8 +44,10 @@
 + (void) dismiss;
 
 + (void) showWithStatus:(NSString *)status;
++ (void) showSuccessWithStatus:(NSString *)status image:(UIImage *)image;
 + (void) showSuccessWithStatus:(NSString *)status;
 + (void) showErrorWithStatus:(NSString *)status;
++ (void) showErrorWithStatus:(NSString *)status image:(UIImage *)image;
 + (void) showImage:(UIImage *)image status:(NSString *)status;
 
 // Custom Durations

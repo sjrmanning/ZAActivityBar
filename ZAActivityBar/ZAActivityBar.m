@@ -303,6 +303,13 @@
     [ZAActivityBar showSuccessWithStatus:status forAction:DEFAULT_ACTION];
 }
 
++ (void) showSuccessWithStatus:(NSString *)status image:(UIImage *)image {
+    [ZAActivityBar showSuccessWithStatus:status
+                                duration:1.0f
+                               forAction:DEFAULT_ACTION
+                                   image:image];
+}
+
 + (void) showSuccessWithStatus:(NSString *)status duration:(NSTimeInterval)duration {
     [ZAActivityBar showSuccessWithStatus:status duration:duration forAction:DEFAULT_ACTION];
 }
@@ -312,7 +319,15 @@
 }
 
 + (void) showSuccessWithStatus:(NSString *)status duration:(NSTimeInterval)duration forAction:(NSString *)action {
-    [ZAActivityBar showImage:[UIImage imageNamed:@"ZAActivityBar.bundle/success.png"]
+    [ZAActivityBar showSuccessWithStatus:status
+                                duration:duration
+                               forAction:action
+                                   image:nil];
+}
+
++ (void) showSuccessWithStatus:(NSString *)status duration:(NSTimeInterval)duration forAction:(NSString *)action image:(UIImage *)image {
+    UIImage *imageToShow = image ? image : [UIImage imageNamed:@"ZAActivityBar.bundle/success.png"];
+    [ZAActivityBar showImage:imageToShow
                       status:status
                     duration:duration
                    forAction:action];
@@ -324,6 +339,13 @@
     [ZAActivityBar showErrorWithStatus:status forAction:DEFAULT_ACTION];
 }
 
++ (void) showErrorWithStatus:(NSString *)status image:(UIImage *)image {
+    [ZAActivityBar showErrorWithStatus:status
+                              duration:1.0f
+                             forAction:DEFAULT_ACTION
+                                 image:image];
+}
+
 + (void) showErrorWithStatus:(NSString *)status duration:(NSTimeInterval)duration {
     [ZAActivityBar showErrorWithStatus:status duration:duration forAction:DEFAULT_ACTION];
 }
@@ -333,7 +355,12 @@
 }
 
 + (void) showErrorWithStatus:(NSString *)status duration:(NSTimeInterval)duration forAction:(NSString *)action {
-    [ZAActivityBar showImage:[UIImage imageNamed:@"ZAActivityBar.bundle/error.png"]
+    [ZAActivityBar showErrorWithStatus:status duration:duration forAction:action image:nil];
+}
+
++ (void) showErrorWithStatus:(NSString *)status duration:(NSTimeInterval)duration forAction:(NSString *)action image:(UIImage *)image {
+    UIImage *imageToShow = image ? image : [UIImage imageNamed:@"ZAActivityBar.bundle/error.png"];
+    [ZAActivityBar showImage:imageToShow
                       status:status
                     duration:duration
                    forAction:action];
